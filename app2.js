@@ -1,6 +1,8 @@
 let numeroSecreto = getNumeroAleatorio();
 let quantidaDeTentativas = 1;
 
+console.log(numeroSecreto);
+
 
 function getNumeroAleatorio() {
     return parseInt(Math.random() *100 +1);    
@@ -18,7 +20,6 @@ function mensagemInicial () {
 
 mensagemInicial ();
 
-
 function verificarChute() { 
     let chute = document.querySelector("input").value;
     
@@ -28,7 +29,7 @@ function verificarChute() {
         let mensagem = `Você acertou com ${quantidaDeTentativas} ${palavraTentativa}`;
         exibirTextoNaTela ("h1", "você acertou o número secreto");
         exibirTextoNaTela ("p", mensagem);        
-        habilitarBotao()
+        habilitarBotao()        
     }
         else { 
             if (chute < numeroSecreto) {
@@ -56,4 +57,6 @@ function novoJogo () {
     limparCampo ();
     mensagemInicial ();
     document.getElementById("reiniciar").setAttribute ("disabled", true);
+    quantidaDeTentativas = 1;
+    numeroSecreto = getNumeroAleatorio();
 }
