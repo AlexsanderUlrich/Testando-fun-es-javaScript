@@ -1,3 +1,5 @@
+let numerosSorteados = [];
+let quantidadeDeSorteios = 10;
 let numeroSecreto = getNumeroAleatorio();
 let quantidaDeTentativas = 1;
 
@@ -5,7 +7,20 @@ console.log(numeroSecreto);
 
 
 function getNumeroAleatorio() {
-    return parseInt(Math.random() *100 +1);    
+    let numeroSorteado = parseInt(Math.random() * quantidadeDeSorteios +1);
+    let tamanhoDaLista = numerosSorteados.length;
+    console.log(numeroSorteado);
+
+    if (tamanhoDaLista == quantidadeDeSorteios) {
+        numerosSorteados = [];
+    }    
+    if (numerosSorteados.includes(numeroSorteado)) {
+        return getNumeroAleatorio();
+    } else {
+        numerosSorteados.push(numeroSorteado);
+        console.log(numerosSorteados);
+        return numeroSorteado;
+    }
 }
 
 function exibirTextoNaTela(tag, texto) {
@@ -15,14 +30,13 @@ function exibirTextoNaTela(tag, texto) {
 
 function mensagemInicial () {
     exibirTextoNaTela("h1", "jogo do número secreto");
-    exibirTextoNaTela("p", "Digite um número de 1 a 100");
+    exibirTextoNaTela("p", `Digite um número de 1 a ${quantidadeDeSorteios}`);
 }
 
 mensagemInicial ();
 
 function verificarChute() { 
-    let chute = document.querySelector("input").value;
-    
+    let chute = document.querySelector("input").value;    
 
     if (chute == numeroSecreto) {
         let palavraTentativa = quantidaDeTentativas > 1 ? 'tentativa' : 'tentativas';

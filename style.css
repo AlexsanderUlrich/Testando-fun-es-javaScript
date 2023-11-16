@@ -70,21 +70,32 @@ body::before {
     
     
 }
-.container__botao:focus {
+.container__botao:hover {
     border-radius: 16px;
-    background: #1875E8;
+    background:none;
     padding: 16px 24px;
     width: 100%;
     font-size: 24px;
     font-weight: 700;
     margin-top: 2rem;
     cursor: pointer;
-          
+    border: 2px solid #b300b9;
+    color: #b300b9
+                   
 }
 
-button:focus {
-    border: 2px solid #b300b9;
-    color: #b300b9;    
+button:disabled:hover {
+    border-radius: 16px;
+    background: #1875E8;
+    padding: 16px 24px;
+    width: 100%;
+    font-size: 24px;
+    font-weight: 700;
+    border: none;
+    margin-top: 2rem;
+    cursor: pointer;
+    color: white;
+    background-color: gray;
 }
 
 .container__texto {
