@@ -3,8 +3,35 @@ let quantidadeDeSorteios = 100;
 let numeroSecreto = getNumeroAleatorio();
 let quantidaDeTentativas = 1;
 let limiteDeTentativas = 10;
+const botaoOk = document.querySelector("dialog button");
+const modal = document.querySelector("dialog");
+let dialog = document.getElementById("modal");
 
-console.log(numeroSecreto);
+
+
+function mostrarMensagemDeTentativas () {
+    let campo = document.querySelector("dialog");
+    campo = campo.showModal();  
+}
+
+
+function invisible () {
+    
+        if (dialog.style.display == "none") {
+            dialog.style.display = "grid";
+            mostrarMensagemDeTentativas ();
+        } else {
+            dialog.style.display = "none";
+        }
+}
+
+
+function fecharModal () {
+    let campo = document.querySelector("dialog");
+    campo = campo.close();
+    dialog.style.display = "none"; 
+}
+
 
 
 function getNumeroAleatorio() {
@@ -32,11 +59,12 @@ function exibirTextoNaTela(tag, texto) {
 function mensagemInicial () {
     exibirTextoNaTela("h1", "jogo do número secreto");
     exibirTextoNaTela("p", `Digite um número de 1 a ${quantidadeDeSorteios}`);
-    alert(`Limite de ${limiteDeTentativas} tentativas`);    
+    alert(`Você tem ${limiteDeTentativas} tentativas`);    
 }
 
 mensagemInicial ();
 
+exibirTextoNaTela("dialog", `Você tem ${limiteDeTentativas} tentativas`);
 
 function verificarChute() { 
     let chute = document.querySelector("input").value;
@@ -87,4 +115,5 @@ function novoJogo () {
     document.getElementById("reiniciar").setAttribute ("disabled", true);
     quantidaDeTentativas = 1;
     numeroSecreto = getNumeroAleatorio();
+    mostrarMensagemDeTentativas ();
 }

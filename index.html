@@ -15,9 +15,16 @@
 
 <body>
 
-    <div class="container">
-        <div class="container__conteudo">
+    <dialog id="modal" class="invisivel">
+        <p id="textoModal"></p>
+        <button onclick="fecharModal()" class="botaoOK">OK</button>
+    </dialog> 
+   
+
+    <div class="container">        
+        <div class="container__conteudo">            
             <div class="container__informacoes">
+                
                 <div class="container__texto">
                     <h1></h1>
                     <p class="texto__paragrafo"></p>
@@ -25,14 +32,17 @@
                 <input type="number" min="1" max="10" class="container__input" placeholder="Digite um número...">
                 <div class="chute container__botoes">
                     <button onclick="verificarChute()" class="container__botao" id="chute">Chutar</button>
-                    <button onclick="novoJogo()" id="reiniciar" class="container__botao" disabled>Novo jogo</button>
+                    <button onclick="novoJogo()" id="reiniciar" class="container__botao" disabled>Novo jogo</button>                                  
                 </div>
+                <button onclick="invisible()"  class="container__botao" id="tentativas">Qunatidade de tentativas restantes</button>                               
             </div>
         </div>
         <section>
         <img src="./img/ia.png" alt="Uma pessoa olhando para a esquerda" class="container__imagem-pessoa" />
         </section>
     </div>
+
+
 
 
 
