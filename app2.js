@@ -3,14 +3,13 @@ let quantidadeDeSorteios = 100;
 let numeroSecreto = getNumeroAleatorio();
 let quantidaDeTentativas = 1;
 let limiteDeTentativas = 10;
+const contadorDeTentativas = [];
 const botaoOk = document.querySelector("dialog button");
 const modal = document.querySelector("dialog");
 let dialog = document.getElementById("modal");
 
 
-
-
-
+//funções do Modal
 function invisible () {
     let campo = document.querySelector("dialog");
     
@@ -48,6 +47,7 @@ function getNumeroAleatorio() {
     }
 }
 
+//funções de mensagens
 function exibirTextoNaTela(tag, texto) {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;   
@@ -62,7 +62,7 @@ mensagemInicial ();
 
 exibirTextoNaTela("h2", `Você Tem ${limiteDeTentativas} Tentativas`);
 
-
+//funções de verificação
 function verificarChute() { 
     let chute = document.querySelector("input").value;
     
@@ -74,7 +74,7 @@ function verificarChute() {
     }
 
     if (chute == numeroSecreto) {
-        let palavraTentativa = quantidaDeTentativas > 1 ? 'tentativa' : 'tentativas';
+        let palavraTentativa = quantidaDeTentativas > 1 ? 'tentativas' : 'tentativa';
         let mensagem = `Você acertou com ${quantidaDeTentativas} ${palavraTentativa}`;
         exibirTextoNaTela ("h1", "você acertou o número secreto");
         exibirTextoNaTela ("p", mensagem);        
@@ -83,18 +83,18 @@ function verificarChute() {
         else {              
 
             if (chute < numeroSecreto) {
-            exibirTextoNaTela ("p", `O número secreto é maior que ${chute}`);
+            exibirTextoNaTela ("p", `O número secreto é maior que ${chute}`);            
             }
                 else {
-                exibirTextoNaTela ("p", `O número secreto é menor que ${chute}`);
+                exibirTextoNaTela ("p", `O número secreto é menor que ${chute}`);               
                 }
 
-                    quantidaDeTentativas++;
-                    limparCampo();
+                let tentativasRestantes = limiteDeTentativas - quantidaDeTentativas;
+                contadorDeTentativas.push(tentativasRestantes);
+                quantidaDeTentativas++;
+                exibirTextoNaTela("h2", `Você Tem ${contadorDeTentativas[contadorDeTentativas.length - 1]} Tentativas`);                                       
     }
 }
-
-
 
 function limparCampo () {
     chute = document.querySelector("input");        
