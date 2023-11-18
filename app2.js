@@ -9,30 +9,27 @@ let dialog = document.getElementById("modal");
 
 
 
-function mostrarMensagemDeTentativas () {
-    let campo = document.querySelector("dialog");
-    campo = campo.showModal();  
-}
 
 
 function invisible () {
+    let campo = document.querySelector("dialog");
     
         if (dialog.style.display == "none") {
-            dialog.style.display = "grid";
-            mostrarMensagemDeTentativas ();
+            dialog.style.display = "flex";            
+            campo = campo.showModal();
+                       
         } else {
             dialog.style.display = "none";
         }
 }
 
+invisible();
 
 function fecharModal () {
     let campo = document.querySelector("dialog");
     campo = campo.close();
     dialog.style.display = "none"; 
 }
-
-
 
 function getNumeroAleatorio() {
     let numeroSorteado = parseInt(Math.random() * quantidadeDeSorteios +1);
@@ -58,13 +55,13 @@ function exibirTextoNaTela(tag, texto) {
 
 function mensagemInicial () {
     exibirTextoNaTela("h1", "jogo do número secreto");
-    exibirTextoNaTela("p", `Digite um número de 1 a ${quantidadeDeSorteios}`);
-    alert(`Você tem ${limiteDeTentativas} tentativas`);    
+    exibirTextoNaTela("p", `Digite um número de 1 a ${quantidadeDeSorteios}`);      
 }
 
 mensagemInicial ();
 
-exibirTextoNaTela("dialog", `Você tem ${limiteDeTentativas} tentativas`);
+exibirTextoNaTela("h2", `Você Tem ${limiteDeTentativas} Tentativas`);
+
 
 function verificarChute() { 
     let chute = document.querySelector("input").value;
@@ -106,7 +103,7 @@ function limparCampo () {
 
 function habilitarBotao () {
     document.getElementById("reiniciar").removeAttribute ("disabled");
-    document.getElementById("chute").removeAttribute ("disabled");
+   
 }
 
 function novoJogo () {
