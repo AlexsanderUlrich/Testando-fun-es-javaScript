@@ -53,8 +53,7 @@ body::before {
 .container__informacoes {
     flex: 1;
     padding: 3rem;
-    
-    
+      
 }
 
 .container__botao {
@@ -96,6 +95,10 @@ button:disabled:hover {
     cursor: pointer;
     color: white;
     background-color: gray;
+}
+
+button:focus {
+    outline: none;
 }
 
 .container__texto {

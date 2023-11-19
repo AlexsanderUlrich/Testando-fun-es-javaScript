@@ -3,10 +3,15 @@ let quantidadeDeSorteios = 100;
 let numeroSecreto = getNumeroAleatorio();
 let quantidaDeTentativas = 1;
 let limiteDeTentativas = 10;
+let dialog = document.getElementById("modal");
+
+const botao = document.querySelector("#chute");
 const contadorDeTentativas = [];
 const botaoOk = document.querySelector("dialog button");
 const modal = document.querySelector("dialog");
-let dialog = document.getElementById("modal");
+
+
+
 
 
 //funções do Modal
@@ -28,7 +33,16 @@ function fecharModal () {
     let campo = document.querySelector("dialog");
     campo = campo.close();
     dialog.style.display = "none"; 
-}
+} 
+
+
+//funções chamadas em outras
+    document.addEventListener("keypress", function(e) {        
+            if (e.key === "Enter"){
+                botao.click();
+    }
+})
+
 
 function getNumeroAleatorio() {
     let numeroSorteado = parseInt(Math.random() * quantidadeDeSorteios +1);
@@ -47,8 +61,9 @@ function getNumeroAleatorio() {
     }
 }
 
+
 //funções de mensagens
-function exibirTextoNaTela(tag, texto) {
+function exibirTextoNaTela (tag, texto) {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;   
 }
@@ -58,19 +73,25 @@ function mensagemInicial () {
     exibirTextoNaTela("p", `Digite um número de 1 a ${quantidadeDeSorteios}`);      
 }
 
+function mensagemPerdeu () {
+    exibirTextoNaTela("h1", "você excedeu a quantidade de tentativas");
+    exibirTextoNaTela("p", "Clique em novo jogo");      
+}
+
 mensagemInicial ();
 
 exibirTextoNaTela("h2", `Você Tem ${limiteDeTentativas} Tentativas`);
+
+
 
 //funções de verificação
 function verificarChute() { 
     let chute = document.querySelector("input").value;
     
     if (quantidaDeTentativas == limiteDeTentativas) {
-        exibirTextoNaTela ("h1", "você excedeu a quantidade de tentativas");
-        exibirTextoNaTela ("p", "Clique em novo jogo");                
-        habilitarBotao()
-        document.getElementById("chute").setAttribute ("disabled", true);        
+        exibirTextoNaTela("h1", "você excedeu a quantidade de tentativas");                      
+        habilitarBotao();
+        document.getElementById("chute").setAttribute ("disabled", true);
     }
 
     if (chute == numeroSecreto) {
@@ -78,7 +99,7 @@ function verificarChute() {
         let mensagem = `Você acertou com ${quantidaDeTentativas} ${palavraTentativa}`;
         exibirTextoNaTela ("h1", "você acertou o número secreto");
         exibirTextoNaTela ("p", mensagem);        
-        habilitarBotao()               
+        habilitarBotao()                       
     }
         else {              
 
@@ -92,9 +113,11 @@ function verificarChute() {
                 let tentativasRestantes = limiteDeTentativas - quantidaDeTentativas;
                 contadorDeTentativas.push(tentativasRestantes);
                 quantidaDeTentativas++;
-                exibirTextoNaTela("h2", `Você Tem ${contadorDeTentativas[contadorDeTentativas.length - 1]} Tentativas`);                                       
+                exibirTextoNaTela("h2", `Você Tem ${contadorDeTentativas[contadorDeTentativas.length - 1]} Tentativas`);
+                limparCampo();                                       
     }
 }
+
 
 function limparCampo () {
     chute = document.querySelector("input");        
